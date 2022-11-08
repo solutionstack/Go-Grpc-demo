@@ -1,0 +1,34 @@
+syntax = "proto3";
+package server;
+option go_package="./proto";
+
+import "google/protobuf/empty.proto";
+
+service User{
+
+  rpc CreateUSer(PostParam) returns (NewUser){}
+  rpc GetUser(GetParam) returns (NewUser){}
+  rpc GetUsers(google.protobuf.Empty) returns (UserList){}
+
+}
+
+message PostParam {
+  string name = 1;
+  int32  age = 2;
+  bool isAdmin = 3;
+}
+
+message GetParam {
+  string id = 1;
+}
+
+message NewUser{
+  string id = 1;
+  string name = 2;
+  int32  age = 3;
+  bool isAdmin = 4;
+}
+
+message UserList{
+  repeated NewUser users= 1;
+}
